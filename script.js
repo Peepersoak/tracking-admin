@@ -59,13 +59,13 @@ function updateVehicleRoute(vehicles) {
       (location.current[0] == 0 && location.current[1] == 0) ||
       (location.destination[0] == 0 && location.destination[1] == 0)
     )
-      return;
+      continue;
 
     const opacity = active ? 0.9 : 0.2;
 
     if (vehicleRoutes[plateNubmer]) {
       vehicleRoutes[plateNubmer].setWaypoints([current, destination]);
-      return;
+      continue;
     }
 
     // Create a new route
@@ -75,6 +75,7 @@ function updateVehicleRoute(vehicles) {
         serviceUrl: 'https://tracking-osrm-production.up.railway.app/route/v1'
       }),
       routeWhileDragging: false,
+      fitSelectedRoutes: false,
       addWaypoints: false,
       show: false,
       lineOptions: {
