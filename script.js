@@ -72,7 +72,7 @@ function updateVehicleRoute(vehicles) {
     const routingControl = L.Routing.control({
       waypoints: [current, destination],
       router: new L.Routing.OSRMv1({
-        serviceUrl: 'https://tracking-osrm-production.up.railway.app/route/v1'
+        serviceUrl: 'https://osrm.revvy.one/route/v1'
       }),
       routeWhileDragging: false,
       fitSelectedRoutes: false,
