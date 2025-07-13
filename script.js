@@ -71,13 +71,24 @@ function updateVehicleRoute(vehicles) {
     // Create a new route
     const routingControl = L.Routing.control({
       waypoints: [current, destination],
+      router: new L.Routing.OSRMv1({
+        serviceUrl: 'https://tracking-osrm-production.up.railway.app/route/v1'
+      }),
       routeWhileDragging: false,
       addWaypoints: false,
       show: false,
-      createMarker: () => null,
       lineOptions: {
         styles: [{ color: getRandomColor(), opacity: opacity, weight: 5 }],
       },
+      createMarker: (i, wp) => {
+        return L.marker(wp.latLng, {
+          icon: L.icon({
+            iconUrl: i === 0 ? 'https://pngimg.com/d/google_maps_pin_PNG82.png' : 'https://cdn-icons-png.flaticon.com/512/9356/9356230.png', // optional
+            iconSize: [24, 24],
+            iconAnchor: [12, 12]
+          })
+        });
+      }
     }).addTo(map);
     vehicleRoutes[plateNubmer] = routingControl;
   }
